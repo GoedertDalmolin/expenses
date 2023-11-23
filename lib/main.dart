@@ -38,7 +38,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Despesas Pessoais'),
       ),
-      body:  Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -48,7 +48,19 @@ class MyHomePage extends StatelessWidget {
           Column(
             children: _transactions.map((tr) {
               return Card(
-                child: Text(tr.title),
+                child: Row(
+                  children: [
+                    Container(
+                      child: Text(tr.value.toString()),
+                    ),
+                    Column(
+                      children: [
+                        Text(tr.title),
+                        Text(tr.date.toString()),
+                      ],
+                    )
+                  ],
+                ),
               );
             }).toList(),
           )
