@@ -40,7 +40,6 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Despesas Pessoais'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Card(
@@ -52,31 +51,27 @@ class MyHomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.purple,
-                              width: 2
-                          )
-                      ),
+                      decoration: BoxDecoration(border: Border.all(color: Colors.purple, width: 2)),
                       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                       padding: EdgeInsets.all(10),
-                      child: Text('R\$ ${tr.value.toStringAsFixed(2)}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.purple
-                        ),),
+                      child: Text(
+                        'R\$ ${tr.value.toStringAsFixed(2)}',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.purple),
+                      ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(tr.title,
+                        Text(
+                          tr.title,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                          ),),
-                        Text(DateFormat('d MMM y').format(tr.date),
+                          ),
+                        ),
+                        Text(
+                          DateFormat('d MMM y').format(tr.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
@@ -87,6 +82,28 @@ class MyHomePage extends StatelessWidget {
                 ),
               );
             }).toList(),
+          ),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Título'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Valor (R\$)'),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Nova Transação',
+                        style: TextStyle(color: Colors.purple),
+                      ))
+                ],
+              ),
+            ),
           )
         ],
       ),
