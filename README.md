@@ -1,16 +1,27 @@
-# expenses
+---
 
-A new Flutter project.
+## Expense App (IN PROGRESS)
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ℹ️ About this repository
+This repository's main objective is to demonstrate the application developed to train my knowledge during the Flutter course from the company [COD3R](https://www.udemy.com/course/curso-flutter/).
 
-A few resources to get you started if this is your first Flutter project:
+This app consists of:
+- Manage spent Finances (Create, Read, Update and Delete).
+- Show the user how much was spent in a week.
+- Display financial statistics through graphs.
+- Present a responsive layout independent of the device screen.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧪 Technologies
+This project was developed using the following technologies:
+
+- [Flutter (v3.16.0)](https://docs.flutter.dev/)
+- [Dart (v3.2.0)](https://dart.dev/)
+- [Intl](https://pub.dev/packages/intl)
+
+---
+Developed by [GoedertDalmolin](https://github.com/GoedertDalmolin) 👋
+---
