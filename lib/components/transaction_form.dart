@@ -22,7 +22,6 @@ class _TransactionFormState extends State<TransactionForm> {
       return;
     }
 
-    debugPrint('Submited');
     widget.onSubmit(title, value);
   }
 
