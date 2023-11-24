@@ -4,6 +4,7 @@ import 'package:expenses/components/transaction_form.dart';
 import 'package:expenses/components/transaction_list.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -14,6 +15,27 @@ class ExpensesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      theme: ThemeData(
+        useMaterial3: true,
+        fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          // backgroundColor: Colors.red,
+        ),
+        textTheme: ThemeData.light().textTheme.copyWith(
+                titleLarge: TextStyle(
+              fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            )),
+        appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(
+          fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        )),
+      ),
     );
   }
 }
@@ -67,11 +89,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text('Despesas Pessoais'),
-        actions: [IconButton(onPressed: () {
-          _openTransactionFormModal(context);
-        }, icon: Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                _openTransactionFormModal(context);
+              },
+              icon: Icon(Icons.add))
+        ],
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

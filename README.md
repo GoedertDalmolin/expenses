@@ -15,6 +15,14 @@ This app consists of:
 
 ---
 
+## 📝 Notes
+As I already work with mobile application development, I made some changes during the course.
+During the course he downloaded the fonts directly from the website [fonts.google.com](https://fonts.google.com/).
+However, currently in Flutter there is a package that already brings these fonts directly from Google.
+So I just imported the package [google_fonts](https://pub.dev/packages/google_fonts) and used the sources it provides.
+
+---
+
 ## 🧪 Technologies
 This project was developed using the following technologies:
 
