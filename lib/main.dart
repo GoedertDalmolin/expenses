@@ -65,9 +65,7 @@ class ExpensesApp extends StatelessWidget {
             },
           ),
         ),
-        bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: Colors.white,
-        ),
+        bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white, surfaceTintColor: Colors.transparent),
         textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: TextStyle(
                 fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
@@ -98,6 +96,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _transactions = <Transaction>[];
   bool _showChart = false;
+
+  final iconList = Platform.isIOS ? CupertinoIcons.list_bullet : Icons.list;
+  final iconChart = Platform.isIOS ? CupertinoIcons.chart_bar_square : Icons.show_chart;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
@@ -152,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final actions = [
       if (isLandscape)
         _getIconButton(
-          _showChart ? Icons.list : Icons.show_chart,
+          _showChart ? iconList : iconChart,
           () {
             setState(() {
               _showChart = !_showChart;
@@ -181,24 +182,26 @@ class _MyHomePageState extends State<MyHomePage> {
     final sizeAppBar = appBar.preferredSize.height;
     final availableHeight = mediaQuery.size.height - sizeAppBar - mediaQuery.padding.top;
 
-    final bodyPage = SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_showChart || !isLandscape)
-            SizedBox(
-              height: availableHeight * (isLandscape ? 0.82 : 0.25),
-              child: Chart(recentTransaction: _recentTransactions),
-            ),
-          if (!_showChart || !isLandscape)
-            SizedBox(
-              height: availableHeight * (isLandscape ? 1 : 0.75),
-              child: TransactionList(
-                transactions: _transactions,
-                onRemove: _removeTransaction,
+    final bodyPage = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight * (isLandscape ? 0.82 : 0.25),
+                child: Chart(recentTransaction: _recentTransactions),
               ),
-            )
-        ],
+            if (!_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight * (isLandscape ? 1 : 0.75),
+                child: TransactionList(
+                  transactions: _transactions,
+                  onRemove: _removeTransaction,
+                ),
+              )
+          ],
+        ),
       ),
     );
 

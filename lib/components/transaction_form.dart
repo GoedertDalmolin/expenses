@@ -1,3 +1,5 @@
+import 'package:expenses/components/adaptative_button.dart';
+import 'package:expenses/components/adaptative_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -43,66 +45,54 @@ class _TransactionFormState extends State<TransactionForm> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Card(
-        surfaceTintColor: Colors.white,
-        elevation: 5,
-        child: Padding(
-          padding: MediaQuery.of(context).viewInsets,
-          child: Column(
-            children: [
-              TextField(
-                decoration: const InputDecoration(labelText: 'Título'),
-                controller: _titleController,
-              ),
-              TextField(
-                decoration: const InputDecoration(labelText: 'Valor (R\$)'),
-                controller: _valueController,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                onSubmitted: (value) {
-                  _submitForm();
-                },
-              ),
-              SizedBox(
-                height: 70,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        "Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}",
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: _showDatePicker,
-                      child: Text(
-                        "Selecionar Data",
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+      child: Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Column(
+          children: [
+            AdaptativeTextField(
+              decoration: const InputDecoration(labelText: 'Título'),
+              controller: _titleController,
+            ),
+            AdaptativeTextField(
+              decoration: const InputDecoration(labelText: 'Valor (R\$)'),
+              controller: _valueController,
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (value) {
+                _submitForm();
+              },
+            ),
+            SizedBox(
+              height: 70,
+              child: Row(
                 children: [
-                  ElevatedButton(
-                    onPressed: _submitForm,
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+                  Expanded(
+                    child: Text(
+                      "Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}",
                     ),
-                    child: const Text(
-                      'Nova Transação',
+                  ),
+                  TextButton(
+                    onPressed: _showDatePicker,
+                    child: Text(
+                      "Selecionar Data",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AdaptativeButton(
+                  onPressed: _submitForm,
+                  label: 'Nova Transação',
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
