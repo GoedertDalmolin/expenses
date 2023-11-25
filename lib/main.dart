@@ -18,10 +18,20 @@ class ExpensesApp extends StatelessWidget {
       home: const MyHomePage(),
       theme: ThemeData(
         useMaterial3: true,
+        cardTheme: CardTheme(
+          surfaceTintColor: Colors.white,
+        ),
+        datePickerTheme: DatePickerThemeData(
+          surfaceTintColor: Colors.white
+        ),
         fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.purple,
           accentColor: Colors.amber,
+          backgroundColor: Colors.white,
+          cardColor: Colors.white,
+        ),
+        bottomSheetTheme: BottomSheetThemeData(
           backgroundColor: Colors.white,
         ),
         textTheme: ThemeData.light().textTheme.copyWith(
