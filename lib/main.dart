@@ -5,7 +5,6 @@ import 'package:expenses/components/transaction_form.dart';
 import 'package:expenses/components/transaction_list.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 main() => runApp(const ExpensesApp());
@@ -107,6 +106,12 @@ class _MyHomePageState extends State<MyHomePage> {
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(10),
+          ),
+        ),
+        isScrollControlled: true,
         builder: (ctx) {
           return TransactionForm(onSubmit: _addTransaction);
         });
@@ -135,24 +140,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLandscape = MediaQuery.orientationOf(context) == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
         'Despesas Pessoais',
         style: TextStyle(
-          fontSize: MediaQuery.textScalerOf(context).scale(20),
+          fontSize: mediaQuery.textScaler.scale(20),
         ),
       ),
       actions: [
-        IconButton(
-          onPressed: () {
-            setState(() {
-              _showChart = !_showChart;
-            });
-          },
-          icon: Icon(_showChart ? Icons.list : Icons.show_chart),
-        ),
+        if (isLandscape)
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _showChart = !_showChart;
+              });
+            },
+            icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+          ),
         IconButton(
           onPressed: () {
             _openTransactionFormModal(context);
@@ -164,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final sizeAppBar = appBar.preferredSize.height;
-    final availableHeight = MediaQuery.sizeOf(context).height - sizeAppBar - MediaQuery.paddingOf(context).top;
+    final availableHeight = mediaQuery.size.height - sizeAppBar - mediaQuery.padding.top;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -187,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             if (!_showChart || !isLandscape)
               SizedBox(
-                height: availableHeight *  (isLandscape ? 0.90 : 0.75) ,
+                height: availableHeight * (isLandscape ? 1 : 0.75),
                 child: TransactionList(
                   transactions: _transactions,
                   onRemove: _removeTransaction,

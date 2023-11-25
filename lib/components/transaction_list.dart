@@ -14,7 +14,7 @@ class TransactionList extends StatelessWidget {
         ? LayoutBuilder(builder: (context, constraints) {
             return Column(
               children: [
-                 SizedBox(
+                SizedBox(
                   height: constraints.maxHeight * 0.01,
                 ),
                 Padding(
@@ -29,7 +29,7 @@ class TransactionList extends StatelessWidget {
                     ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   height: constraints.maxHeight * 0.1,
                 ),
                 SizedBox(
@@ -48,6 +48,7 @@ class TransactionList extends StatelessWidget {
         : ListView.builder(
             itemCount: transactions.length,
             itemBuilder: (ctx, index) {
+              final mediaQuery = MediaQuery.of(context);
               return Card(
                 elevation: 5,
                 margin: const EdgeInsets.symmetric(
@@ -67,13 +68,26 @@ class TransactionList extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   subtitle: Text(DateFormat('dd/MM/y').format(transactions[index].date)),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      onRemove(transactions[index].id);
-                    },
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                  trailing: mediaQuery.size.width > 480
+                      ? ElevatedButton.icon(
+                          style: ButtonStyle(elevation: MaterialStateProperty.all(5), surfaceTintColor: MaterialStateProperty.all(Colors.white)),
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.delete,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          label: Text(
+                            'Excluir',
+                            style: TextStyle(color: Theme.of(context).colorScheme.error),
+                          ),
+                        )
+                      : IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            onRemove(transactions[index].id);
+                          },
+                          color: Theme.of(context).colorScheme.error,
+                        ),
                 ),
               );
             },
