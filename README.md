@@ -29,7 +29,8 @@ This project was developed using the following technologies:
 - [Flutter (v3.16.0)](https://docs.flutter.dev/)
 - [Dart (v3.2.0)](https://dart.dev/)
 - [Intl](https://pub.dev/packages/intl)
+- [Google_Fonts](https://pub.dev/packages/google_fonts)
 
 ---
-Developed by [GoedertDalmolin](https://github.com/GoedertDalmolin) 👋
+</> Developed by [GoedertDalmolin](https://github.com/GoedertDalmolin) 👋
 ---
