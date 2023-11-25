@@ -22,20 +22,23 @@ class ExpensesApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.purple,
           accentColor: Colors.amber,
-          // backgroundColor: Colors.red,
+          backgroundColor: Colors.white,
         ),
         textTheme: ThemeData.light().textTheme.copyWith(
-                titleLarge: TextStyle(
-              fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            )),
+              titleLarge: TextStyle(
+                fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
         appBarTheme: AppBarTheme(
-            titleTextStyle: TextStyle(
-          fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        )),
+          iconTheme: ThemeData.light().iconTheme.copyWith(color: Colors.white),
+          titleTextStyle: TextStyle(
+            fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
@@ -66,7 +69,19 @@ class _MyHomePageState extends State<MyHomePage> {
       id: 't2',
       title: 'Conta de luz',
       value: 211.30,
-      date: DateTime.now().subtract(const Duration(days: 3)),
+      date: DateTime.now().subtract(const Duration(days: 4)),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Cartão de Crédito',
+      value: 10211.30,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't4',
+      title: 'Lanche',
+      value: 11.30,
+      date: DateTime.now(),
     ),
   ];
 
