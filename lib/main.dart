@@ -18,12 +18,10 @@ class ExpensesApp extends StatelessWidget {
       home: const MyHomePage(),
       theme: ThemeData(
         useMaterial3: true,
-        cardTheme: CardTheme(
+        cardTheme: const CardTheme(
           surfaceTintColor: Colors.white,
         ),
-        datePickerTheme: DatePickerThemeData(
-          surfaceTintColor: Colors.white
-        ),
+        datePickerTheme: const DatePickerThemeData(surfaceTintColor: Colors.white),
         fontFamily: GoogleFonts.getFont('Quicksand').fontFamily,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.purple,
@@ -31,7 +29,7 @@ class ExpensesApp extends StatelessWidget {
           backgroundColor: Colors.white,
           cardColor: Colors.white,
         ),
-        bottomSheetTheme: BottomSheetThemeData(
+        bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: Colors.white,
         ),
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -63,36 +61,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _transactions = <Transaction>[
-    Transaction(
-      id: 't0',
-      title: 'Conta Antiga',
-      value: 400,
-      date: DateTime.now().subtract(const Duration(days: 33)),
-    ),
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de luz',
-      value: 211.30,
-      date: DateTime.now().subtract(const Duration(days: 4)),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Cartão de Crédito',
-      value: 10211.30,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't4',
-      title: 'Lanche',
-      value: 11.30,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't0',
+    //   title: 'Conta Antiga',
+    //   value: 400,
+    //   date: DateTime.now().subtract(const Duration(days: 33)),
+    // ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'Novo Tênis de Corrida',
+    //   value: 310.76,
+    //   date: DateTime.now().subtract(const Duration(days: 3)),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Conta de luz',
+    //   value: 211.30,
+    //   date: DateTime.now().subtract(const Duration(days: 4)),
+    // ),
+    // Transaction(
+    //   id: 't3',
+    //   title: 'Cartão de Crédito',
+    //   value: 10211.30,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't4',
+    //   title: 'Lanche',
+    //   value: 11.30,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -109,12 +107,12 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {

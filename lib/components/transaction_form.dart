@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class TransactionForm extends StatefulWidget {
   const TransactionForm({required this.onSubmit, super.key});
 
-  final Function(String, double) onSubmit;
+  final Function(String, double, DateTime) onSubmit;
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
@@ -13,7 +13,7 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
-  DateTime? _selectedDate;
+  var _selectedDate = DateTime.now();
 
   _submitForm() {
     final title = _titleController.text;
@@ -23,7 +23,7 @@ class _TransactionFormState extends State<TransactionForm> {
       return;
     }
 
-    widget.onSubmit(title, value);
+    widget.onSubmit(title, value, _selectedDate);
   }
 
   _showDatePicker() async {
@@ -61,14 +61,15 @@ class _TransactionFormState extends State<TransactionForm> {
                 _submitForm();
               },
             ),
-            Container(
+            SizedBox(
               height: 70,
               child: Row(
                 children: [
                   Expanded(
-                      child: Text(
-                    _selectedDate == null ? "Nenhuma data selecionada!" : "Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate!)}",
-                  )),
+                    child: Text(
+                      "Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}",
+                    ),
+                  ),
                   TextButton(
                     onPressed: _showDatePicker,
                     child: Text(
@@ -87,14 +88,14 @@ class _TransactionFormState extends State<TransactionForm> {
               children: [
                 ElevatedButton(
                   onPressed: _submitForm,
-                  child: Text(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
+                  ),
+                  child: const Text(
                     'Nova Transação',
                     style: TextStyle(
                       color: Colors.white,
                     ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary),
                   ),
                 ),
               ],
