@@ -11,27 +11,40 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return transactions.isEmpty
-        ? Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Nenhuma Transação Cadastrada!',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 200,
-                child: Image.asset(
-                  'assets/images/waiting.png',
-                  fit: BoxFit.cover,
+        ? LayoutBuilder(builder: (context, constraints) {
+            return Column(
+              children: [
+                 SizedBox(
+                  height: constraints.maxHeight * 0.01,
                 ),
-              ),
-            ],
-          )
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SizedBox(
+                    height: constraints.maxHeight * 0.1,
+                    child: FittedBox(
+                      child: Text(
+                        'Nenhuma Transação Cadastrada!',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ),
+                  ),
+                ),
+                 SizedBox(
+                  height: constraints.maxHeight * 0.1,
+                ),
+                SizedBox(
+                  height: constraints.maxHeight * 0.6,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(
+                  height: constraints.maxHeight * 0.19,
+                ),
+              ],
+            );
+          })
         : ListView.builder(
             itemCount: transactions.length,
             itemBuilder: (ctx, index) {

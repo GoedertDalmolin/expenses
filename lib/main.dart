@@ -5,6 +5,7 @@ import 'package:expenses/components/transaction_form.dart';
 import 'package:expenses/components/transaction_list.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 main() => runApp(const ExpensesApp());
@@ -28,6 +29,40 @@ class ExpensesApp extends StatelessWidget {
           accentColor: Colors.amber,
           backgroundColor: Colors.white,
           cardColor: Colors.white,
+        ),
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.resolveWith(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.selected)) {
+                return Colors.purple;
+              }
+              return Colors.grey.withOpacity(.9);
+            },
+          ),
+          trackColor: MaterialStateProperty.resolveWith(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.selected)) {
+                return Colors.white;
+              }
+              return Colors.white.withOpacity(.1);
+            },
+          ),
+          overlayColor: MaterialStateProperty.resolveWith(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return Colors.grey;
+              }
+              return Colors.grey.withOpacity(.1);
+            },
+          ),
+          trackOutlineColor: MaterialStateProperty.resolveWith(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.selected)) {
+                return Colors.purple;
+              }
+              return Colors.grey;
+            },
+          ),
         ),
         bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: Colors.white,
@@ -61,6 +96,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _transactions = <Transaction>[];
+  bool _showChart = false;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((element) {
@@ -99,6 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape = MediaQuery.orientationOf(context) == Orientation.landscape;
+
     final appBar = AppBar(
       title: Text(
         'Despesas Pessoais',
@@ -108,10 +146,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       actions: [
         IconButton(
-            onPressed: () {
-              _openTransactionFormModal(context);
-            },
-            icon: const Icon(Icons.add))
+          onPressed: () {
+            setState(() {
+              _showChart = !_showChart;
+            });
+          },
+          icon: Icon(_showChart ? Icons.list : Icons.show_chart),
+        ),
+        IconButton(
+          onPressed: () {
+            _openTransactionFormModal(context);
+          },
+          icon: const Icon(Icons.add),
+        ),
       ],
       backgroundColor: Theme.of(context).colorScheme.primary,
     );
@@ -133,17 +180,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-              height: availableHeight * 0.25,
-              child: Chart(recentTransaction: _recentTransactions),
-            ),
-            SizedBox(
-              height: availableHeight * 0.75,
-              child: TransactionList(
-                transactions: _transactions,
-                onRemove: _removeTransaction,
+            if (_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight * (isLandscape ? 0.82 : 0.25),
+                child: Chart(recentTransaction: _recentTransactions),
               ),
-            )
+            if (!_showChart || !isLandscape)
+              SizedBox(
+                height: availableHeight *  (isLandscape ? 0.90 : 0.75) ,
+                child: TransactionList(
+                  transactions: _transactions,
+                  onRemove: _removeTransaction,
+                ),
+              )
           ],
         ),
       ),
