@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TransactionForm extends StatefulWidget {
-  TransactionForm({required this.onSubmit, super.key});
+  const TransactionForm({required this.onSubmit, super.key});
 
   final Function(String, double) onSubmit;
 
@@ -34,13 +34,13 @@ class _TransactionFormState extends State<TransactionForm> {
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(labelText: 'Título'),
+              decoration: const InputDecoration(labelText: 'Título'),
               controller: titleController,
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Valor (R\$)'),
+              decoration: const InputDecoration(labelText: 'Valor (R\$)'),
               controller: valueController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (value) {
                 _submitForm();
               },
