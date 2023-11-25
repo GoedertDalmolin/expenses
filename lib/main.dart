@@ -99,19 +99,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text(
+        'Despesas Pessoais',
+        style: TextStyle(
+          fontSize: MediaQuery.textScalerOf(context).scale(20),
+        ),
+      ),
+      actions: [
+        IconButton(
+            onPressed: () {
+              _openTransactionFormModal(context);
+            },
+            icon: const Icon(Icons.add))
+      ],
+      backgroundColor: Theme.of(context).colorScheme.primary,
+    );
+
+    final sizeAppBar = appBar.preferredSize.height;
+    final availableHeight = MediaQuery.sizeOf(context).height - sizeAppBar - MediaQuery.paddingOf(context).top;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(
-        title: const Text('Despesas Pessoais'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                _openTransactionFormModal(context);
-              },
-              icon: const Icon(Icons.add))
-        ],
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
+      appBar: appBar,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
@@ -123,11 +133,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(recentTransaction: _recentTransactions),
-            Column(
-              children: [
-                TransactionList(transactions: _transactions, onRemove: _removeTransaction,),
-              ],
+            SizedBox(
+              height: availableHeight * 0.25,
+              child: Chart(recentTransaction: _recentTransactions),
+            ),
+            SizedBox(
+              height: availableHeight * 0.75,
+              child: TransactionList(
+                transactions: _transactions,
+                onRemove: _removeTransaction,
+              ),
             )
           ],
         ),
