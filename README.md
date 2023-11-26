@@ -14,7 +14,7 @@ This app consists of:
 - Present a responsive layout independent of the device screen.
 
 ---
-
+## 👁️ Preview
 <img src='.github/demostracao.gif'/>
 
 ---
