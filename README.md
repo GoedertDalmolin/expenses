@@ -15,7 +15,7 @@ This app consists of:
 
 ---
 ## 👁️ Preview
-<img src='.github/demostracao.gif'/>
+<img src='.github/otimizado.gif'/>
 
 ---
 

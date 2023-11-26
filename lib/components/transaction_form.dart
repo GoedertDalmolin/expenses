@@ -42,21 +42,11 @@ class _TransactionFormState extends State<TransactionForm> {
     });
   }
 
-  // Iphone 1000
-  // Pizza 100
-  // Apple Watch 700
-
-  // Airpods 350
-  // Skate 200
-  // Mouse 400
-
-  // Keyboard 300
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding:  EdgeInsets.only(right: 16, top: 16, left: 16.0, bottom: MediaQuery.of(context).viewInsets.bottom + 16),
+        padding: EdgeInsets.only(right: 16, top: 16, left: 16.0, bottom: MediaQuery.of(context).viewInsets.bottom + 16),
         child: Column(
           children: [
             AdaptativeTextField(
