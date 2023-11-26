@@ -71,7 +71,9 @@ class TransactionList extends StatelessWidget {
                   trailing: mediaQuery.size.width > 480
                       ? ElevatedButton.icon(
                           style: ButtonStyle(elevation: MaterialStateProperty.all(5), surfaceTintColor: MaterialStateProperty.all(Colors.white)),
-                          onPressed: () {},
+                          onPressed: () {
+                            onRemove(transactions[index].id);
+                          },
                           icon: Icon(
                             Icons.delete,
                             color: Theme.of(context).colorScheme.error,
