@@ -15,6 +15,10 @@ This app consists of:
 
 ---
 
+<img src='.github/demostracao.gif'/>
+
+---
+
 ## 📝 Notes
 As I already work with mobile application development, I made some changes during the course.
 During the course, the teacher downloaded the fonts directly from the website [fonts.google.com](https://fonts.google.com/).
