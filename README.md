@@ -1,6 +1,6 @@
 ---
 
-## Expense App
+## Expenses App
 
 ---
 
