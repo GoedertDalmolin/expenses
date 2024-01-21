@@ -16,7 +16,7 @@ This app consists of:
 ---
 ## 👁️ Preview
 <h1 align="center">
-<img src='.github/gifs/add_expense.gif' width="32%">
+<img src='.github/gifs/add_expense.gif' width="35%">
 </h1>
 
 <h1 align="center">
