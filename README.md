@@ -16,11 +16,11 @@ This app consists of:
 ---
 ## 👁️ Preview
 <h1 align="center">
-<img src='.github/gifs/add_expense.gif' width="50%">
+<img src='.github/gifs/add_expense.gif' width="32%">
 </h1>
 
 <h1 align="center">
-    <img src=".github/images/1-home-page.png" width="32%">
+    <img src=".github/images/1-home_page.png" width="32%">
     <img src=".github/images/2-expense_form.png" width="32%">
     <img src=".github/images/3-expense_list.png" width="32%">
 </h1>
