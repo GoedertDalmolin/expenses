@@ -60,8 +60,8 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 Primeiramente clone este projeto usando:
 
 ```bash
-  git clone https://github.com/GoedertDalmolin/meals.git
-  cd meals
+  git clone https://github.com/GoedertDalmolin/expenses.git
+  cd expenses
 ```
 
 Por fim, com o flutter instalado em sua máquina, execute o seguinte comando:
